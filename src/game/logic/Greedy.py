@@ -16,6 +16,8 @@ class GreedyLogic(BaseLogic):
     def next_move(self, board_bot: GameObject, board: Board):
         props = board_bot.properties
         current_position = board_bot.position
+
+        # teleport
         teleporter = [d for d in board.game_objects if d.type == "TeleportGameObject"]
         dist_tele = [distance(d.position, current_position) for d in teleporter]
         if (dist_tele[0] > dist_tele[1]):
@@ -25,6 +27,18 @@ class GreedyLogic(BaseLogic):
             teleporter[1] = temp
         else:
             near_tele = dist_tele[0]
+
+        # red button
+        distRedButton = 0
+        positionRedButton = None
+        for redButton in board.game_objects:
+                if redButton.type == "DiamondButtonGameObject":
+                    positionRedButton = redButton.position
+                    distRedButton = abs(current_position.x-redButton.position.x) + abs(current_position.y-redButton.position.y)
+                    if (near_tele + distance(teleporter[1].position, positionRedButton) <= distRedButton):
+                        positionRedButton = teleporter[1].position
+                        distRedButton = near_tele + distance(teleporter[1].position, positionRedButton)
+                    break
         
         base = board_bot.properties.base
         dist_base = distance(current_position, base)
@@ -60,7 +74,9 @@ class GreedyLogic(BaseLogic):
             # Look for diamonds
             min = 1000
             goal = base
+            jumlahDiamond = 0
             for diamond in board.diamonds:
+                jumlahDiamond += 1
                 if not (diamond.properties.points == 2 and props.diamonds >= 4):
                     dist = distance(current_position, diamond.position)
                     dist_with_tele = near_tele + distance(teleporter[1].position, diamond.position)
@@ -74,6 +90,9 @@ class GreedyLogic(BaseLogic):
                     elif (dist_with_tele < min):
                         goal = teleporter[0].position
                         min = dist_with_tele
+            
+            if(jumlahDiamond <= 6 and distRedButton <= min):
+                goal = positionRedButton
 
             self.goal_position = goal
 
