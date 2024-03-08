@@ -92,7 +92,7 @@ def diamondAlgorithm(diamonds, teleporter, redButton, base, current_position, pr
     # return hasil
     return delta_x, delta_y
 
-class GreedyLogic(BaseLogic):
+class WadasLogic(BaseLogic):
     # inisiasi
     def __init__(self):
         # inisiasi objek tujuan

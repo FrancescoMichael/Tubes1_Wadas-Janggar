@@ -8,19 +8,14 @@ from game.bot_handler import BotHandler
 from game.logic.random import RandomLogic
 from game.util import *
 from game.logic.base import BaseLogic
-from game.logic.max import Move
-from game.logic.justin import TeleporterLogic
-from game.logic.coco import TestBot
-from game.logic.Greedy import GreedyLogic
+from game.logic.WadasJanggar import WadasLogic
+
 init()
 BASE_URL = "http://localhost:3000/api"
 DEFAULT_BOARD_ID = 1
 CONTROLLERS = {
-    "Random": GreedyLogic,
-    "Greedy": GreedyLogic,
-    "Teleport" : GreedyLogic,
-    "Coco" : GreedyLogic,
-    "Max" : GreedyLogic
+    "Random": RandomLogic,
+    "Wadas": WadasLogic,
 }
 
 ###############################################################################

@@ -2,7 +2,7 @@
 
 > Tugas Besar IF2211 Strategi Algoritma Kelas 1 Kelompok Wadas Janggar
 > 
-> Oleh Kelompok Algeo Lens:<br>
+> Oleh Kelompok Wadas Janggar:<br>
 > 1. 13522020 Aurelius Justin Philo Fanjaya<br>
 > 2. 13522038 Francesco Michael Kusuma<br>
 > 3. 13522061 Maximilian Sulistiyo<br>
